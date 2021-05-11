@@ -21,25 +21,23 @@ namespace CircusTrein
         private void button1_Click(object sender, EventArgs e)
         {
             listBox1.Items.Clear();
-            train.FullWagons.Clear();
-            train.Wagons.Clear();
-            train.UnusedAnimals.Clear();
+            train.ClearTrain();
 
-            train.AddAnimal((int)SmallHerbivore.Value,1,false);
-            train.AddAnimal((int)MediumHerbivore.Value, 3, false);
-            train.AddAnimal((int)BigHerbivore.Value, 5, false);
-            train.AddAnimal((int)SmallCarnivore.Value, 1, true);
-            train.AddAnimal((int)MediumCarnivore.Value, 3, true);
-            train.AddAnimal((int)BigCarnivore.Value, 5, true);
+            train.AddAnimal((int)SmallHerbivore.Value, AnimalWeight.Small ,AnimalType.Herbivore);
+            train.AddAnimal((int)MediumHerbivore.Value, AnimalWeight.Medium, AnimalType.Herbivore);
+            train.AddAnimal((int)BigHerbivore.Value, AnimalWeight.Large, AnimalType.Herbivore);
+            train.AddAnimal((int)SmallCarnivore.Value, AnimalWeight.Small, AnimalType.Carnivore);
+            train.AddAnimal((int)MediumCarnivore.Value, AnimalWeight.Medium, AnimalType.Carnivore);
+            train.AddAnimal((int)BigCarnivore.Value, AnimalWeight.Large, AnimalType.Carnivore);
 
-            train.FillTrain();
+            List<Wagon> wagons = train.FillTrain();
 
-            foreach(Wagon wagon in train.FullWagons.ToList())
+            foreach(Wagon wagon in wagons)
             {
                 string outp = "";
-                foreach(Animal animal in wagon.animals.ToList())
+                foreach(Animal animal in wagon.GetAnimals())
                 {
-                    outp += $"{animal.Weight} {animal.IsCarnivore}, ";
+                    outp += $"{animal.Weight} {animal.Type}, ";
                 }
                 listBox1.Items.Add(outp);
             }

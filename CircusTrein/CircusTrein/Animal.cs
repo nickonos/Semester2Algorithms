@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace CircusTrein
 {
-    class Animal
+    public class Animal
     {
-        public int Weight { get; set; }
-        public bool IsCarnivore { get; set; }
+        public AnimalWeight Weight { get; private set; }
+        public AnimalType Type { get; private set; }
 
-        public Animal(int weight, bool isCarnivore)
+        public Animal(AnimalWeight weight, AnimalType type)
         {
             Weight = weight;
-            IsCarnivore = isCarnivore;
+            Type = type;
         }
     }
 }

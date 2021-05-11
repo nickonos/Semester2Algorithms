@@ -6,96 +6,79 @@ using System.Threading.Tasks;
 
 namespace CircusTrein
 {
-    class Train
+    public class Train
     {
-        public List<Animal> UnusedAnimals = new List<Animal>();
-        public List<Wagon> FullWagons = new List<Wagon>();
-        public List<Wagon> Wagons = new List<Wagon>();
+        private List<Animal> UnusedAnimals = new List<Animal>();
+        private List<Wagon> Wagons = new List<Wagon>();
 
-        public void FillTrain()
-        {
-            foreach(Animal animal in UnusedAnimals.ToList())
-            {
-                if (animal.IsCarnivore)
-                {
-                    Wagons.Add(new Wagon(animal));
-                    UnusedAnimals.Remove(animal);
-                }
-            }
-
-            foreach(Wagon wagon in Wagons.ToList())
-            {
-                if(wagon.CarinvoreWeight == 5)
-                {
-                    FullWagons.Add(wagon);
-                    Wagons.Remove(wagon);
-                }
-                else
-                {
-                    foreach(Animal animal in UnusedAnimals.ToList())
-                    {
-                        if (wagon.CarinvoreWeight < animal.Weight && wagon.CurrentWeight + animal.Weight <= wagon.MaxWeight)
-                        {
-                            wagon.animals.Add(animal);
-                            wagon.CurrentWeight += animal.Weight;
-                            UnusedAnimals.Remove(animal);
-                        }
-                    }
-                    FullWagons.Add(wagon);
-                    Wagons.Remove(wagon);
-                }
-            }
-            //AddLastAnimals();
-            foreach (Animal animal in UnusedAnimals.ToList())
-            {
-                if (Wagons.Count != 0)
-                {
-                    foreach (Wagon wagon in Wagons.ToList())
-                    {
-                        if (wagon.CurrentWeight + animal.Weight <= wagon.MaxWeight)
-                        {
-                            wagon.animals.Add(animal);
-                            wagon.CurrentWeight += animal.Weight;
-                            UnusedAnimals.Remove(animal);
-                        }
-                        else
-                        {
-                            FullWagons.Add(wagon);
-                            Wagons.Remove(wagon);
-                        }
-                    }
-                }
-                else
-                {
-                    Wagons.Add(new Wagon(animal));
-                    UnusedAnimals.Remove(animal);
-                }
-            }
-            foreach (Wagon wagon in Wagons.ToList())
-            {
-                FullWagons.Add(wagon);
-                Wagons.Remove(wagon);
-            }
-        }
-
-        public void AddAnimal(int amount, int weight, bool IsCarnivore)
+        public void AddAnimal(int amount, AnimalWeight weight, AnimalType type)
         {
             for (int i = 0; i < amount; i++)
             {
-                UnusedAnimals.Add(new Animal(weight, IsCarnivore));
+                UnusedAnimals.Add(new Animal(weight, type));
             }
         }
 
-        //public void AddLastAnimals()
-        //{
-        //    if(UnusedAnimals.Count != 0)
-        //    {
-        //        if (Wagon)
-        //    }
-        //    else
-        //    {
-        //        return;
-        //    }
-        //}
+        public void ClearTrain()
+        {
+            UnusedAnimals.Clear();
+            Wagons.Clear();
+        }
+
+        public List<Wagon> FillTrain()
+        {
+            CreateWagonsForCarnivore();
+
+            AddAnimalsToWagons();
+
+            return Wagons;
+        }
+
+        private void AddAnimalsToWagons()
+        {
+            foreach (Animal animal in UnusedAnimals.ToList())
+            {
+                if (Wagons.Count > 0)
+                {
+                    if (!AddAnimalIfFits(animal))
+                    {
+                        Wagons.Add(new Wagon(animal));
+                        UnusedAnimals.Remove(animal);
+                    }
+                }
+                else
+                {
+                    Wagons.Add(new Wagon(animal));
+                    UnusedAnimals.Remove(animal);
+                }
+            }
+            
+        }
+
+        private bool AddAnimalIfFits(Animal animal)
+        {
+            foreach (Wagon wagon in Wagons.ToList())
+            {
+                if (wagon.TryAddAnimal(animal))
+                {
+                    UnusedAnimals.Remove(animal);
+                    return true;
+                }       
+            }
+            return false;
+
+        }
+
+        private void CreateWagonsForCarnivore()
+        {
+            foreach (Animal animal in UnusedAnimals.ToList())
+            {
+                if (animal.Type == AnimalType.Carnivore)
+                {
+                    Wagons.Add(new Wagon(animal));
+                    UnusedAnimals.Remove(animal);
+                }
+            }
+        }
     }
 }
