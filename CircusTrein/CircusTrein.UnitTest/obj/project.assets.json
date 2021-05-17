@@ -4643,11 +4643,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nickv\\source\\repos\\CircusTrein\\CircusTrein.UnitTest\\CircusTrein.UnitTest.csproj",
+      "projectUniqueName": "C:\\Users\\nickv\\source\\repos\\Semester2Algorithms\\CircusTrein\\CircusTrein.UnitTest\\CircusTrein.UnitTest.csproj",
       "projectName": "CircusTrein.UnitTest",
-      "projectPath": "C:\\Users\\nickv\\source\\repos\\CircusTrein\\CircusTrein.UnitTest\\CircusTrein.UnitTest.csproj",
+      "projectPath": "C:\\Users\\nickv\\source\\repos\\Semester2Algorithms\\CircusTrein\\CircusTrein.UnitTest\\CircusTrein.UnitTest.csproj",
       "packagesPath": "C:\\Users\\nickv\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\nickv\\source\\repos\\CircusTrein\\CircusTrein.UnitTest\\obj\\",
+      "outputPath": "C:\\Users\\nickv\\source\\repos\\Semester2Algorithms\\CircusTrein\\CircusTrein.UnitTest\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\nickv\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4664,8 +4664,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\nickv\\source\\repos\\CircusTrein\\CircusTrein\\CircusTrein.csproj": {
-              "projectPath": "C:\\Users\\nickv\\source\\repos\\CircusTrein\\CircusTrein\\CircusTrein.csproj"
+            "C:\\Users\\nickv\\source\\repos\\Semester2Algorithms\\CircusTrein\\CircusTrein\\CircusTrein.csproj": {
+              "projectPath": "C:\\Users\\nickv\\source\\repos\\Semester2Algorithms\\CircusTrein\\CircusTrein\\CircusTrein.csproj"
             }
           }
         }

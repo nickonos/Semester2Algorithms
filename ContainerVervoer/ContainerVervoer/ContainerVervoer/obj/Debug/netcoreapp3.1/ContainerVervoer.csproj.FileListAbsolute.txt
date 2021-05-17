@@ -1,0 +1,13 @@
+C:\Users\nickv\source\repos\Semester2Algorithms\ContainerVervoer\ContainerVervoer\ContainerVervoer\obj\Debug\netcoreapp3.1\ContainerVervoer.csprojAssemblyReference.cache
+C:\Users\nickv\source\repos\Semester2Algorithms\ContainerVervoer\ContainerVervoer\ContainerVervoer\obj\Debug\netcoreapp3.1\ContainerVervoer.AssemblyInfoInputs.cache
+C:\Users\nickv\source\repos\Semester2Algorithms\ContainerVervoer\ContainerVervoer\ContainerVervoer\obj\Debug\netcoreapp3.1\ContainerVervoer.AssemblyInfo.cs
+C:\Users\nickv\source\repos\Semester2Algorithms\ContainerVervoer\ContainerVervoer\ContainerVervoer\obj\Debug\netcoreapp3.1\ContainerVervoer.csproj.CoreCompileInputs.cache
+C:\Users\nickv\source\repos\Semester2Algorithms\ContainerVervoer\ContainerVervoer\ContainerVervoer\bin\Debug\netcoreapp3.1\ContainerVervoer.exe
+C:\Users\nickv\source\repos\Semester2Algorithms\ContainerVervoer\ContainerVervoer\ContainerVervoer\bin\Debug\netcoreapp3.1\ContainerVervoer.deps.json
+C:\Users\nickv\source\repos\Semester2Algorithms\ContainerVervoer\ContainerVervoer\ContainerVervoer\bin\Debug\netcoreapp3.1\ContainerVervoer.runtimeconfig.json
+C:\Users\nickv\source\repos\Semester2Algorithms\ContainerVervoer\ContainerVervoer\ContainerVervoer\bin\Debug\netcoreapp3.1\ContainerVervoer.runtimeconfig.dev.json
+C:\Users\nickv\source\repos\Semester2Algorithms\ContainerVervoer\ContainerVervoer\ContainerVervoer\bin\Debug\netcoreapp3.1\ContainerVervoer.dll
+C:\Users\nickv\source\repos\Semester2Algorithms\ContainerVervoer\ContainerVervoer\ContainerVervoer\bin\Debug\netcoreapp3.1\ContainerVervoer.pdb
+C:\Users\nickv\source\repos\Semester2Algorithms\ContainerVervoer\ContainerVervoer\ContainerVervoer\obj\Debug\netcoreapp3.1\ContainerVervoer.dll
+C:\Users\nickv\source\repos\Semester2Algorithms\ContainerVervoer\ContainerVervoer\ContainerVervoer\obj\Debug\netcoreapp3.1\ContainerVervoer.pdb
+C:\Users\nickv\source\repos\Semester2Algorithms\ContainerVervoer\ContainerVervoer\ContainerVervoer\obj\Debug\netcoreapp3.1\ContainerVervoer.genruntimeconfig.cache
