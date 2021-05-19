@@ -6,8 +6,6 @@ namespace ContainerVervoer
 {
     public class Container
     {
-        //container weight range 4000 - 30000
-
         public ContainerType Type { get; private set; }
         public int Weight { get; private set; }
 

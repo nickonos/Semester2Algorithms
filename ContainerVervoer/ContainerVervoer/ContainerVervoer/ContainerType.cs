@@ -6,10 +6,10 @@ namespace ContainerVervoer
 {
     public enum ContainerType
     {
-        Default,
-        Valuable,
-        Cooled,
-        ValuableCooled
+        Default = 1,
+        Valuable = 2,
+        Cooled = 3,
+        ValuableCooled = 4
     }
 
     public class IntVector2

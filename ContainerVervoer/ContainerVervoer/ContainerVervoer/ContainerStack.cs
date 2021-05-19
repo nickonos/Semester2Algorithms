@@ -7,7 +7,7 @@ namespace ContainerVervoer
     public class ContainerStack
     {
         //MaxWeightOnTop = 120000
-        public List<Container> Containers { get; set; }
+        private List<Container> Containers;
 
         public ContainerStack()
         {
@@ -39,6 +39,31 @@ namespace ContainerVervoer
             }
 
             return Weight;
+        }
+
+        public bool CheckIfContainerFits(Container container)
+        {
+            if (CalculateWeightOnTop() + container.Weight > 120000)
+                return false;
+
+            if (Containers.Count != 0 && Containers.FindLast(c => c.Weight > 1).Type == ContainerType.Valuable || Containers.Count != 0 && Containers.FindLast(c => c.Weight > 1).Type == ContainerType.ValuableCooled)
+                return false;
+
+            return true;
+        }
+
+        public bool AddContainer(Container container)
+        {
+            if (!CheckIfContainerFits(container))
+                return false;
+
+            Containers.Add(container);
+            return true;
+        }
+
+        public IReadOnlyList<Container> GetContainers()
+        {
+            return Containers.AsReadOnly();
         }
     }
 }

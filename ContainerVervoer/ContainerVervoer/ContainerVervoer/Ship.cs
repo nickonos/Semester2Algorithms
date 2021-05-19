@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 using System.Text;
 
@@ -23,6 +24,10 @@ namespace ContainerVervoer
             Deck = new List<ContainerRow>();
             MaximumWeight = maxWeight;
             ShipSize = intVector2;
+            for(int i= 0; i< ShipSize.Length; i++)
+            {
+                Deck.Add(new ContainerRow(ShipSize.Width));
+            }
         }
 
         public void Sort()
@@ -30,10 +35,57 @@ namespace ContainerVervoer
             if (TotalContainers == null || TotalContainers.Count == 0)
                 return;
 
-            foreach(Container container in TotalContainers.FindAll(c => c.Type == ContainerType.Cooled || c.Type == ContainerType.ValuableCooled))
+            FillFirstRow();
+            
+            
+            ContainerRow row = new ContainerRow(ShipSize.Width);
+            ContainerStack stack = new ContainerStack();
+            foreach(Container container in TotalContainers.ToList())
             {
+                if (!stack.AddContainer(container))
+                {
+                    if (!row.AddContainerStack(stack))
+                    {
+                        Deck.Add(row);
 
+                        row = new ContainerRow(ShipSize.Width);
+                        Console.WriteLine(CalculateShipBalance());
+                    }
+
+                    stack = new ContainerStack();
+                }
+                else
+                {
+                    TotalContainers.Remove(container);
+                }
+                
             }
+        }
+
+
+        private void FillFirstRow()
+        {
+            ContainerRow row = new ContainerRow(ShipSize.Width);
+
+            List<Container> containers = TotalContainers.FindAll(c => c.Type == ContainerType.Cooled);
+
+            foreach(Container container in containers)
+            {
+                TotalContainers.Remove(container);
+            }
+
+            row.DevideContainers(containers);
+            
+            containers = TotalContainers.FindAll(c => c.Type == ContainerType.ValuableCooled);
+
+            foreach (Container container in containers)
+            {
+                TotalContainers.Remove(container);
+            }
+
+            row.DevideContainers(containers);
+
+            Deck[0] = row;
         }
 
         public void AddContainers(List<Container> containers)
@@ -41,44 +93,46 @@ namespace ContainerVervoer
             TotalContainers.AddRange(containers);
         }
 
-        private double CalculateWeightDifference()
+        private double CalculateShipBalance()
         {
-            int WeightLeft = 0;
-            int WeightRight = 0;
+            double WeightLeft = 0;
+            double WeightRight = 0;
 
             foreach(ContainerRow row in Deck)
             {
-                foreach(ContainerStack stack in row.ContainerStacks)
+                int i = 0;
+                foreach (ContainerStack containerStack in row.GetContainerStacks())
                 {
+
                     if(ShipSize.Width%2 == 0)
                     {
-                        if ( row.ContainerStacks.IndexOf(stack) < ShipSize.Width / 2)
+                        if ( i < ShipSize.Width / 2)
                         {
-                            WeightLeft += stack.CalculateWeight();
+                            WeightLeft += containerStack.CalculateWeight();
                         }
                         else
                         {
-                            WeightRight += stack.CalculateWeight();
+                            WeightRight += containerStack.CalculateWeight();
                         }
                     }
                     else
                     {
-                        if (row.ContainerStacks.IndexOf(stack) == ShipSize.Width - 1 / 2) 
+                        if (i == ShipSize.Width - 1 / 2) 
                         {
                         }
-                        else if (row.ContainerStacks.IndexOf(stack) < ShipSize.Width - 1 / 2)
+                        else if (i < ShipSize.Width - 1 / 2)
                         {
-                            WeightLeft += stack.CalculateWeight();
+                            WeightLeft += containerStack.CalculateWeight();
                         }
                         else
                         {
-                            WeightRight += stack.CalculateWeight();
+                            WeightRight += containerStack.CalculateWeight();
                         }
                     }
+                    i++;
                 }
             }
-            double Diff = ((double)WeightRight/(double)(WeightRight + WeightLeft) *100) - ((double)WeightLeft / (double)(WeightLeft + WeightRight)*100);
-            Console.WriteLine(Diff);
+            double Diff = (WeightRight/(WeightRight + WeightLeft) *100) - (WeightLeft / (WeightLeft + WeightRight)*100);
             return Diff;
         }
     }

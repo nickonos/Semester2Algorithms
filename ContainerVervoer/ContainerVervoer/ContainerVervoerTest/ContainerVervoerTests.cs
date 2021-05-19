@@ -14,8 +14,7 @@ namespace ContainerVervoerTest
         [Test]
         public void TestCalculateWeightDifference()
         {
-            Ship ship = new Ship(new IntVector2(4, 4), 1000000000);
-            ship.CalculateWeightDifference();
+            Ship ship = new Ship(new IntVector2(3, 4), 1000000000);
             Assert.Pass();
         }
     }
