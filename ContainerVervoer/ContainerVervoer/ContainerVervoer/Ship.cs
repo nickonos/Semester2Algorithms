@@ -30,6 +30,11 @@ namespace ContainerVervoer
             }
         }
 
+        public List<ContainerRow> GetContainerRows()
+        {
+            return Deck;
+        }
+
         public void Sort()
         {
             if (TotalContainers == null || TotalContainers.Count == 0)
@@ -38,28 +43,28 @@ namespace ContainerVervoer
             FillFirstRow();
             
             
-            ContainerRow row = new ContainerRow(ShipSize.Width);
-            ContainerStack stack = new ContainerStack();
-            foreach(Container container in TotalContainers.ToList())
-            {
-                if (!stack.AddContainer(container))
-                {
-                    if (!row.AddContainerStack(stack))
-                    {
-                        Deck.Add(row);
+            //ContainerRow row = new ContainerRow(ShipSize.Width);
+            //ContainerStack stack = new ContainerStack();
+            //foreach(Container container in TotalContainers.ToList())
+            //{
+            //    if (!stack.AddContainer(container))
+            //    {
+            //        if (!row.AddContainerStack(stack))
+            //        {
+            //            Deck.Add(row);
 
-                        row = new ContainerRow(ShipSize.Width);
-                        Console.WriteLine(CalculateShipBalance());
-                    }
+            //            row = new ContainerRow(ShipSize.Width);
+            //            Console.WriteLine(CalculateShipBalance());
+            //        }
 
-                    stack = new ContainerStack();
-                }
-                else
-                {
-                    TotalContainers.Remove(container);
-                }
+            //        stack = new ContainerStack();
+            //    }
+            //    else
+            //    {
+            //        TotalContainers.Remove(container);
+            //    }
                 
-            }
+            //}
         }
 
 
