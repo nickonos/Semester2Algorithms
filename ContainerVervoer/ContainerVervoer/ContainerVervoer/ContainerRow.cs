@@ -42,12 +42,12 @@ namespace ContainerVervoer
                         if (!AddLeftOrRight(container))
                             return container;
 
-                    Containers.Remove(container);
+                    
                     continue;
                 }
                 if (!AddLeftOrRight(container))
                     return container;
-                Containers.Remove(container);
+                
             }
 
             return null;
@@ -59,7 +59,7 @@ namespace ContainerVervoer
             double bal = CalculateRowBalance();
             if (bal > 0)
             {
-                for(int i = (maxLength-1)/2; i > 0; i--)
+                for(int i = (maxLength-1)/2; i >= 0; i--)
                 {
                     if (ContainerStacks[i].AddContainer(container))
                         return true;
@@ -119,7 +119,6 @@ namespace ContainerVervoer
             }
             
             double Diff = (WeightRight / (WeightRight + WeightLeft) * 100) - (WeightLeft / (WeightLeft + WeightRight) * 100);
-            Console.WriteLine(Diff);
             return Diff;
         }
 

@@ -12,7 +12,7 @@ namespace ContainerVervoer
             //max gewicht = gem max h * x * y
             List<Container> containers = new List<Container>();
 
-            Ship ship = new Ship(new IntVector2(3, 4), 27105882);
+            Ship ship = new Ship(new IntVector2(4, 4), 27105882);
             containers.AddRange(CreateContainers());
             ship.AddContainers(containers);
             ship.Sort();
@@ -22,6 +22,33 @@ namespace ContainerVervoer
 
         static string GenerateOutputString(List<ContainerRow> containerRows)
         {
+            //length=1 & width=1 & stacks="" & weight="" 
+
+            //seperate containers 1-1-1-1
+            //seperate stack 1-1,1-1
+            //seperate row 1,1/1,1
+            int co = 0;
+            int v = 0;
+            int vc = 0;
+            foreach(ContainerRow c in containerRows)
+            {
+                foreach(ContainerStack sc in c.GetContainerStacks())
+                {
+                    foreach(Container cn in sc.GetContainers())
+                    {
+                        if (cn.Type == ContainerType.Cooled)
+                            co++;
+
+                        if (cn.Type == ContainerType.Valuable)
+                            v++;
+
+                        if (cn.Type == ContainerType.ValuableCooled)
+                            vc++;
+                    }
+                }
+            }
+             Console.WriteLine($"c= {co},v = {v}, vc = {vc}");
+
             string output = "";
             output += $"https://i872272core.venus.fhict.nl/ContainerVisualizer/index.html?length={containerRows.Count}&width={containerRows[0].GetContainerStacks().Count}&stacks=";
 
@@ -76,7 +103,7 @@ namespace ContainerVervoer
             List<Container> containers = new List<Container>();
             Random rand = new Random();
 
-            for(int i = 0; i< 50; i++)
+            for(int i = 0; i< 100; i++)
             {
                 int random = rand.Next(1, 15);
                 ContainerType container = (ContainerType)random;

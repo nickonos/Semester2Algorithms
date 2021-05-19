@@ -40,32 +40,12 @@ namespace ContainerVervoer
             if (TotalContainers == null || TotalContainers.Count == 0)
                 return;
 
+            Console.WriteLine($"c= {TotalContainers.FindAll(c => c.Type == ContainerType.Cooled).Count},v = {TotalContainers.FindAll(c => c.Type == ContainerType.Valuable).Count}, vc = {TotalContainers.FindAll(c => c.Type == ContainerType.Cooled).Count}");
+
             FillFirstRow();
 
             FillRemainingRows();
 
-            //ContainerRow row = new ContainerRow(ShipSize.Width);
-            //ContainerStack stack = new ContainerStack();
-            //foreach(Container container in TotalContainers.ToList())
-            //{
-            //    if (!stack.AddContainer(container))
-            //    {
-            //        if (!row.AddContainerStack(stack))
-            //        {
-            //            Deck.Add(row);
-
-            //            row = new ContainerRow(ShipSize.Width);
-            //            Console.WriteLine(CalculateShipBalance());
-            //        }
-
-            //        stack = new ContainerStack();
-            //    }
-            //    else
-            //    {
-            //        TotalContainers.Remove(container);
-            //    }
-                
-            //}
         }
 
 
@@ -92,7 +72,7 @@ namespace ContainerVervoer
             }
 
             if (row.DevideContainers(containers) != null)
-                //throw new Exception("Valuable Cooled containers don't fit in row 1");
+                Console.WriteLine("valuable Cooled containers don't fit in row 1");
 
             Deck[0] = row;
         }
@@ -101,12 +81,34 @@ namespace ContainerVervoer
         {
             foreach(ContainerRow containerRow in Deck.ToList())
             {
-                Container container = containerRow.DevideContainers(TotalContainers.FindAll(c => c.Type == ContainerType.Default));
+                List<Container> containers = TotalContainers.FindAll(c => c.Type == ContainerType.Default);
+                Container container = containerRow.DevideContainers(containers);
 
-                if (container == null)
-                    return;
+                bool check = false;
+                foreach(Container c in containers)
+                {
+                    if (c == container)
+                        check = true;
 
-                TotalContainers.RemoveRange(0, TotalContainers.IndexOf(container));
+                    if(!check)
+                        TotalContainers.Remove(c);
+                }
+                
+            }
+            foreach (ContainerRow containerRow in Deck.ToList())
+            {
+                List<Container> containers = TotalContainers.FindAll(c => c.Type == ContainerType.Valuable);
+                Container container = containerRow.DevideContainers(containers);
+
+                bool check = false;
+                foreach (Container c in containers)
+                {
+                    if (c == container)
+                        check = true;
+
+                    if(!check)
+                        TotalContainers.Remove(c);
+                }
             }
         }
 
