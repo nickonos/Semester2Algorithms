@@ -41,8 +41,9 @@ namespace ContainerVervoer
                 return;
 
             FillFirstRow();
-            
-            
+
+            FillRemainingRows();
+
             //ContainerRow row = new ContainerRow(ShipSize.Width);
             //ContainerStack stack = new ContainerStack();
             //foreach(Container container in TotalContainers.ToList())
@@ -79,7 +80,9 @@ namespace ContainerVervoer
                 TotalContainers.Remove(container);
             }
 
-            row.DevideContainers(containers);
+            if (row.DevideContainers(containers) != null)
+                throw new Exception("Cooled containers don't fit in row 1");
+
             
             containers = TotalContainers.FindAll(c => c.Type == ContainerType.ValuableCooled);
 
@@ -88,9 +91,23 @@ namespace ContainerVervoer
                 TotalContainers.Remove(container);
             }
 
-            row.DevideContainers(containers);
+            if (row.DevideContainers(containers) != null)
+                //throw new Exception("Valuable Cooled containers don't fit in row 1");
 
             Deck[0] = row;
+        }
+
+        public void FillRemainingRows()
+        {
+            foreach(ContainerRow containerRow in Deck.ToList())
+            {
+                Container container = containerRow.DevideContainers(TotalContainers.FindAll(c => c.Type == ContainerType.Default));
+
+                if (container == null)
+                    return;
+
+                TotalContainers.RemoveRange(0, TotalContainers.IndexOf(container));
+            }
         }
 
         public void AddContainers(List<Container> containers)

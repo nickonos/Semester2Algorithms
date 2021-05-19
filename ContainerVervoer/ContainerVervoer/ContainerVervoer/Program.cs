@@ -12,7 +12,7 @@ namespace ContainerVervoer
             //max gewicht = gem max h * x * y
             List<Container> containers = new List<Container>();
 
-            Ship ship = new Ship(new IntVector2(8, 4), 27105882);
+            Ship ship = new Ship(new IntVector2(3, 4), 27105882);
             containers.AddRange(CreateContainers());
             ship.AddContainers(containers);
             ship.Sort();
@@ -22,12 +22,6 @@ namespace ContainerVervoer
 
         static string GenerateOutputString(List<ContainerRow> containerRows)
         {
-            //length=1 & width=1 & stacks="" & weight="" 
-
-            //seperate containers 1-1-1-1
-            //seperate stack 1-1,1-1
-            //seperate row 1,1/1,1
-
             string output = "";
             output += $"https://i872272core.venus.fhict.nl/ContainerVisualizer/index.html?length={containerRows.Count}&width={containerRows[0].GetContainerStacks().Count}&stacks=";
 
@@ -82,9 +76,13 @@ namespace ContainerVervoer
             List<Container> containers = new List<Container>();
             Random rand = new Random();
 
-            for(int i = 0; i< 40; i++)
+            for(int i = 0; i< 50; i++)
             {
-                containers.Add(new Container((ContainerType)rand.Next(1,4) , rand.Next(4, 30) * 1000));
+                int random = rand.Next(1, 15);
+                ContainerType container = (ContainerType)random;
+                if (random > 4)
+                    container = ContainerType.Default;
+                containers.Add(new Container( container, rand.Next(4, 30) * 1000));
             }
             //containers.Add(new Container(ContainerType.Default, 30000));
             //containers.Add(new Container(ContainerType.Default, 30000));

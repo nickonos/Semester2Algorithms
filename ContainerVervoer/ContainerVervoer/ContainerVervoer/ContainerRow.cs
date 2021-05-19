@@ -32,25 +32,29 @@ namespace ContainerVervoer
             return true;
         }
 
-        public void DevideContainers(List<Container> Containers)
+        public Container? DevideContainers(List<Container> Containers)
         {
             foreach(Container container in Containers.ToList())
             {
                 if(maxLength%2 == 1)
                 {
-                    if(!ContainerStacks[maxLength / 2].AddContainer(container))
-                        AddLeftOrRight(container);
+                    if (!ContainerStacks[maxLength / 2].AddContainer(container))
+                        if (!AddLeftOrRight(container))
+                            return container;
 
                     Containers.Remove(container);
                     continue;
                 }
-                AddLeftOrRight(container);
+                if (!AddLeftOrRight(container))
+                    return container;
                 Containers.Remove(container);
             }
+
+            return null;
             
         }
 
-        private void AddLeftOrRight(Container container)
+        private bool AddLeftOrRight(Container container)
         {
             double bal = CalculateRowBalance();
             if (bal > 0)
@@ -58,17 +62,18 @@ namespace ContainerVervoer
                 for(int i = (maxLength-1)/2; i > 0; i--)
                 {
                     if (ContainerStacks[i].AddContainer(container))
-                        return;
+                        return true;
                 } 
             }
             else
             {
-                for(int i = (maxLength-1)/2; i < maxLength; i++)
+                for(int i = ((maxLength-1)/2) +1; i < maxLength; i++)
                 {
                     if (ContainerStacks[i].AddContainer(container))
-                        return;
+                        return true;
                 }
             }
+            return false;
         }
 
         public IReadOnlyList<ContainerStack> GetContainerStacks()
