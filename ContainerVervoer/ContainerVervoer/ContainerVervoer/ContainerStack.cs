@@ -6,7 +6,6 @@ namespace ContainerVervoer
 {
     public class ContainerStack
     {
-        //MaxWeightOnTop = 120000
         private List<Container> Containers;
 
         public ContainerStack()

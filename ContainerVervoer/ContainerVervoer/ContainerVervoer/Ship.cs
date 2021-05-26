@@ -44,8 +44,14 @@ namespace ContainerVervoer
 
             FillFirstRow();
 
-            FillRemainingRows();
+            FillDefaultRows();
 
+            FillValuableRows();
+        }
+
+        public void AddContainers(List<Container> containers)
+        {
+            TotalContainers.AddRange(containers);
         }
 
 
@@ -77,7 +83,7 @@ namespace ContainerVervoer
             Deck[0] = row;
         }
 
-        public void FillRemainingRows()
+        private void FillDefaultRows()
         {
             foreach(ContainerRow containerRow in Deck.ToList())
             {
@@ -112,9 +118,25 @@ namespace ContainerVervoer
             }
         }
 
-        public void AddContainers(List<Container> containers)
+        private void FillValuableRows()
         {
-            TotalContainers.AddRange(containers);
+            int j = 1;
+            for(int i = ShipSize.Length/2; i< ShipSize.Length && i>= 0;)
+            {
+                //Deck[i].GetContainerStacks();
+                Console.WriteLine($"jump: {j}, index: {i}");
+
+
+                if(j%2 == (ShipSize.Length/2)%2)
+                {
+                    i += j;
+                }
+                else
+                {
+                    i -= j;
+                }
+                j++;
+            }
         }
 
         private double CalculateShipBalance()

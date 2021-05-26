@@ -42,12 +42,10 @@ namespace ContainerVervoer
                         if (!AddLeftOrRight(container))
                             return container;
 
-                    
                     continue;
                 }
                 if (!AddLeftOrRight(container))
                     return container;
-                
             }
 
             return null;

@@ -8,3 +8,13 @@ C:\Users\nickv\source\repos\CircusTrein\CircusTrein\obj\Debug\CircusTrein.csproj
 C:\Users\nickv\source\repos\CircusTrein\CircusTrein\obj\Debug\CircusTrein.csproj.CoreCompileInputs.cache
 C:\Users\nickv\source\repos\CircusTrein\CircusTrein\obj\Debug\CircusTrein.exe
 C:\Users\nickv\source\repos\CircusTrein\CircusTrein\obj\Debug\CircusTrein.pdb
+C:\Users\nickv\source\repos\Semester2Algorithms\CircusTrein\CircusTrein\bin\Debug\CircusTrein.exe.config
+C:\Users\nickv\source\repos\Semester2Algorithms\CircusTrein\CircusTrein\bin\Debug\CircusTrein.exe
+C:\Users\nickv\source\repos\Semester2Algorithms\CircusTrein\CircusTrein\bin\Debug\CircusTrein.pdb
+C:\Users\nickv\source\repos\Semester2Algorithms\CircusTrein\CircusTrein\obj\Debug\CircusTrein.csprojAssemblyReference.cache
+C:\Users\nickv\source\repos\Semester2Algorithms\CircusTrein\CircusTrein\obj\Debug\CircusTrein.Form1.resources
+C:\Users\nickv\source\repos\Semester2Algorithms\CircusTrein\CircusTrein\obj\Debug\CircusTrein.Properties.Resources.resources
+C:\Users\nickv\source\repos\Semester2Algorithms\CircusTrein\CircusTrein\obj\Debug\CircusTrein.csproj.GenerateResource.cache
+C:\Users\nickv\source\repos\Semester2Algorithms\CircusTrein\CircusTrein\obj\Debug\CircusTrein.csproj.CoreCompileInputs.cache
+C:\Users\nickv\source\repos\Semester2Algorithms\CircusTrein\CircusTrein\obj\Debug\CircusTrein.exe
+C:\Users\nickv\source\repos\Semester2Algorithms\CircusTrein\CircusTrein\obj\Debug\CircusTrein.pdb
