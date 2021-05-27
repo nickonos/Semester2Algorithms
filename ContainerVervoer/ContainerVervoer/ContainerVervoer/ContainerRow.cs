@@ -79,6 +79,45 @@ namespace ContainerVervoer
             return ContainerStacks.AsReadOnly();
         }
 
+        public List<int> GetValidContainerPositions(Container container)
+        {
+            List<int> output = new List<int>();
+            double bal = CalculateRowBalance();
+            if (bal > 0)
+            {
+                for (int i = (maxLength - 1) / 2; i >= 0; i--)
+                {
+                    if (ContainerStacks[i].CheckIfContainerFits(container))
+                        output.Add(i);
+                }
+                for (int i = ((maxLength - 1) / 2) + 1; i < maxLength; i++)
+                {
+                    if (ContainerStacks[i].CheckIfContainerFits(container))
+                        output.Add(i);
+                }
+            }
+            else
+            {
+                for (int i = ((maxLength - 1) / 2) + 1; i < maxLength; i++)
+                {
+                    if (ContainerStacks[i].CheckIfContainerFits(container))
+                        output.Add(i);
+                }
+                for (int i = (maxLength - 1) / 2; i >= 0; i--)
+                {
+                    if (ContainerStacks[i].CheckIfContainerFits(container))
+                        output.Add(i);
+                }
+            }
+
+            return output;
+        }
+
+        public bool AddContainer(int position, Container container)
+        {
+            return ContainerStacks[position].AddContainer(container);
+        }
+
         public double CalculateRowBalance()
         {
             double WeightLeft = 0;

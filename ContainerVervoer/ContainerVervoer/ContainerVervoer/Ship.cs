@@ -8,11 +8,6 @@ namespace ContainerVervoer
 {
     public class Ship
     {
-        //Waardevolle containers mogen geen containers bovenop wel op containers
-        //Waardevolle containers moeten of voor of achteraan het schip
-        //Gekoelde containers moeten voor aan het schip zitten
-        //50% van het maximale gewicht moet benut zijn
-        //het schip moet links en rechts evenveel gewicht hebben (σ: 20%)
         private int MaximumWeight;
         private List<ContainerRow> Deck;
         private List<Container> TotalContainers;
@@ -24,9 +19,9 @@ namespace ContainerVervoer
             Deck = new List<ContainerRow>();
             MaximumWeight = maxWeight;
             ShipSize = intVector2;
-            for(int i= 0; i< ShipSize.Length; i++)
+            for(int i= 0; i< ShipSize.Y; i++)
             {
-                Deck.Add(new ContainerRow(ShipSize.Width));
+                Deck.Add(new ContainerRow(ShipSize.X));
             }
         }
 
@@ -39,8 +34,6 @@ namespace ContainerVervoer
         {
             if (TotalContainers == null || TotalContainers.Count == 0)
                 return;
-
-            Console.WriteLine($"c= {TotalContainers.FindAll(c => c.Type == ContainerType.Cooled).Count},v = {TotalContainers.FindAll(c => c.Type == ContainerType.Valuable).Count}, vc = {TotalContainers.FindAll(c => c.Type == ContainerType.Cooled).Count}");
 
             FillFirstRow();
 
@@ -57,7 +50,7 @@ namespace ContainerVervoer
 
         private void FillFirstRow()
         {
-            ContainerRow row = new ContainerRow(ShipSize.Width);
+            ContainerRow row = new ContainerRow(ShipSize.X);
 
             List<Container> containers = TotalContainers.FindAll(c => c.Type == ContainerType.Cooled);
 
@@ -101,42 +94,72 @@ namespace ContainerVervoer
                 }
                 
             }
-            foreach (ContainerRow containerRow in Deck.ToList())
-            {
-                List<Container> containers = TotalContainers.FindAll(c => c.Type == ContainerType.Valuable);
-                Container container = containerRow.DevideContainers(containers);
-
-                bool check = false;
-                foreach (Container c in containers)
-                {
-                    if (c == container)
-                        check = true;
-
-                    if(!check)
-                        TotalContainers.Remove(c);
-                }
-            }
         }
 
         private void FillValuableRows()
         {
-            int j = 1;
-            for(int i = ShipSize.Length/2; i< ShipSize.Length && i>= 0;)
+            List<Container> containers = TotalContainers.FindAll(c => c.Type == ContainerType.Valuable);
+            foreach(Container container in containers)
             {
-                //Deck[i].GetContainerStacks();
-                Console.WriteLine($"jump: {j}, index: {i}");
-
-
-                if(j%2 == (ShipSize.Length/2)%2)
-                {
-                    i += j;
-                }
-                else
-                {
-                    i -= j;
-                }
-                j++;
+                help(container);
+                TotalContainers.Remove(container);
             }
+        }
+
+        private void help(Container container) 
+        {
+            int j = 1;
+            for (int i = ShipSize.Y / 2; i < ShipSize.Y && i >= 0; j++)
+            {
+                List<int> test = Deck[i].GetValidContainerPositions(container);
+
+                if (TryAddValuable(test, i, container))
+                    return;
+
+                if (j % 2 == (ShipSize.Y / 2) % 2)
+                    i += j;
+                else
+                    i -= j;
+            }
+        }
+
+        private bool TryAddValuable(List<int> rowPositions , int deckPosition , Container container)
+        {
+            foreach (int pos in rowPositions)
+            {
+                if (CheckIfAccessable(new IntVector2(deckPosition, pos)))
+                {
+                    Deck[deckPosition].AddContainer(pos, container);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private bool CheckIfAccessable(IntVector2 position)
+        {
+            IReadOnlyList<ContainerStack> Checkrow = Deck[position.X].GetContainerStacks();
+            Checkrow[position.Y].GetHeight();
+            bool succes = true;
+            if (position.X == 0 || position.X == ShipSize.Y - 1)
+                return true;
+
+            for(int i = position.Y; i< ShipSize.X; i++)
+            {
+                IReadOnlyList<ContainerStack> stacks = Deck[i].GetContainerStacks();
+                if (stacks[i] != null)
+                    succes = false;
+            }
+            if (succes)
+                return true;
+
+            for (int i = position.Y; i > 0; i--)
+            {
+                IReadOnlyList<ContainerStack> stacks = Deck[i].GetContainerStacks();
+                if (stacks[i] != null)
+                    succes = false;
+            }
+            return succes;
         }
 
         private double CalculateShipBalance()
@@ -150,9 +173,9 @@ namespace ContainerVervoer
                 foreach (ContainerStack containerStack in row.GetContainerStacks())
                 {
 
-                    if(ShipSize.Width%2 == 0)
+                    if(ShipSize.X%2 == 0)
                     {
-                        if ( i < ShipSize.Width / 2)
+                        if ( i < ShipSize.X / 2)
                         {
                             WeightLeft += containerStack.CalculateWeight();
                         }
@@ -163,10 +186,10 @@ namespace ContainerVervoer
                     }
                     else
                     {
-                        if (i == ShipSize.Width - 1 / 2) 
+                        if (i == ShipSize.X - 1 / 2) 
                         {
                         }
-                        else if (i < ShipSize.Width - 1 / 2)
+                        else if (i < ShipSize.X - 1 / 2)
                         {
                             WeightLeft += containerStack.CalculateWeight();
                         }

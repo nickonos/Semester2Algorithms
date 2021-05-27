@@ -14,15 +14,15 @@ namespace ContainerVervoer
 
     public class IntVector2
     {
-        public int Length { get; set; }
-        public int Width { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
 
         public IntVector2() { }
 
         public IntVector2(int x, int y)
         {
-            Length = x;
-            Width = y;
+            X = x;
+            Y = y;
         }
     }
 

@@ -60,6 +60,11 @@ namespace ContainerVervoer
             return true;
         }
 
+        public int GetHeight()
+        {
+            return Containers.Count;
+        }
+
         public IReadOnlyList<Container> GetContainers()
         {
             return Containers.AsReadOnly();

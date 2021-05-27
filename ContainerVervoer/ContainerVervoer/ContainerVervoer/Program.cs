@@ -5,6 +5,9 @@ namespace ContainerVervoer
 {
     class Program
     {
+        /* Bugs: Als schip oneven wijd is vult hij links niet
+         * 
+         */
         static void Main(string[] args)
         {
             //uitgaande van gemiddelde gewicht container 17000
@@ -17,37 +20,13 @@ namespace ContainerVervoer
             ship.AddContainers(containers);
             ship.Sort();
 
+
             Console.WriteLine(GenerateOutputString(ship.GetContainerRows()));
         }
 
         static string GenerateOutputString(List<ContainerRow> containerRows)
         {
-            //length=1 & width=1 & stacks="" & weight="" 
-
-            //seperate containers 1-1-1-1
-            //seperate stack 1-1,1-1
-            //seperate row 1,1/1,1
-            int co = 0;
-            int v = 0;
-            int vc = 0;
-            foreach(ContainerRow c in containerRows)
-            {
-                foreach(ContainerStack sc in c.GetContainerStacks())
-                {
-                    foreach(Container cn in sc.GetContainers())
-                    {
-                        if (cn.Type == ContainerType.Cooled)
-                            co++;
-
-                        if (cn.Type == ContainerType.Valuable)
-                            v++;
-
-                        if (cn.Type == ContainerType.ValuableCooled)
-                            vc++;
-                    }
-                }
-            }
-             Console.WriteLine($"c= {co},v = {v}, vc = {vc}");
+            printValues(containerRows);
 
             string output = "";
             output += $"https://i872272core.venus.fhict.nl/ContainerVisualizer/index.html?length={containerRows.Count}&width={containerRows[0].GetContainerStacks().Count}&stacks=";
@@ -96,6 +75,19 @@ namespace ContainerVervoer
             output += $"&weights={weight}";
 
             return output;
+        }
+
+        static void printValues(List<ContainerRow> rows)
+        {
+            foreach(ContainerRow row in rows)
+            {
+                IReadOnlyList<ContainerStack> stacks = row.GetContainerStacks();
+                foreach(ContainerStack stack in stacks)
+                {
+                    Console.Write($"{stack.CalculateWeightOnTop()} ");
+                }
+                Console.WriteLine();
+            }
         }
 
         static List<Container> CreateContainers()

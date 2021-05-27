@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Jksis8qQyNTpPeLY5d+g9PzAOzSF8Ub9RF0BHBwOuX5CltbqS+xuuFAng4ZvpzxfUXX5qyi6db4LVKncOjBRFw==",
+  "dgSpecHash": "gbzoHJzHx2fsoHR2dx0xZUIRepT1agu1aFN5nEKkyod3bp39kR7hZj98MdRjW1cftoojpDgr0nGLtt0exAAINQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\nickv\\source\\repos\\Semester2Algorithms\\ContainerVervoer\\ContainerVervoer\\ContainerVervoerTest\\ContainerVervoerTest.csproj",
   "expectedPackageFiles": [
@@ -17,7 +17,7 @@
     "C:\\Users\\nickv\\.nuget\\packages\\netstandard.library\\2.0.0\\netstandard.library.2.0.0.nupkg.sha512",
     "C:\\Users\\nickv\\.nuget\\packages\\newtonsoft.json\\9.0.1\\newtonsoft.json.9.0.1.nupkg.sha512",
     "C:\\Users\\nickv\\.nuget\\packages\\nuget.frameworks\\5.0.0\\nuget.frameworks.5.0.0.nupkg.sha512",
-    "C:\\Users\\nickv\\.nuget\\packages\\nunit\\3.12.0\\nunit.3.12.0.nupkg.sha512",
+    "C:\\Users\\nickv\\.nuget\\packages\\nunit\\3.13.2\\nunit.3.13.2.nupkg.sha512",
     "C:\\Users\\nickv\\.nuget\\packages\\nunit3testadapter\\3.16.1\\nunit3testadapter.3.16.1.nupkg.sha512",
     "C:\\Users\\nickv\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\nickv\\.nuget\\packages\\system.appcontext\\4.1.0\\system.appcontext.4.1.0.nupkg.sha512",
