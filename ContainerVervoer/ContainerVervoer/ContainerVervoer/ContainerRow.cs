@@ -49,7 +49,6 @@ namespace ContainerVervoer
             }
 
             return null;
-            
         }
 
         private bool AddLeftOrRight(Container container)
@@ -130,27 +129,20 @@ namespace ContainerVervoer
                 if (maxLength % 2 == 0)
                 {
                     if (i < maxLength / 2)
-                    {
                         WeightLeft += containerStack.CalculateWeight();
-                    }
+
                     else
-                    {
                         WeightRight += containerStack.CalculateWeight();
-                    }
                 }
                 else
                 {
-                    if (i == maxLength - 1 / 2)
+                    if (i == maxLength/ 2)
                     {
                     }
-                    else if (i < maxLength - 1 / 2)
-                    {
+                    else if (i < maxLength / 2)
                         WeightLeft += containerStack.CalculateWeight();
-                    }
                     else
-                    {
                         WeightRight += containerStack.CalculateWeight();
-                    }
                 }
                 i++;
             }

@@ -101,12 +101,12 @@ namespace ContainerVervoer
             List<Container> containers = TotalContainers.FindAll(c => c.Type == ContainerType.Valuable);
             foreach(Container container in containers)
             {
-                help(container);
+                AddValuableContainer(container);
                 TotalContainers.Remove(container);
             }
         }
 
-        private void help(Container container) 
+        private void AddValuableContainer(Container container) 
         {
             int j = 1;
             for (int i = ShipSize.Y / 2; i < ShipSize.Y && i >= 0; j++)
@@ -139,7 +139,7 @@ namespace ContainerVervoer
         private bool CheckIfAccessable(IntVector2 position)
         {
             IReadOnlyList<ContainerStack> Checkrow = Deck[position.X].GetContainerStacks();
-            Checkrow[position.Y].GetHeight();
+            int height = Checkrow[position.Y].GetHeight();
             bool succes = true;
             if (position.X == 0 || position.X == ShipSize.Y - 1)
                 return true;
@@ -147,7 +147,7 @@ namespace ContainerVervoer
             for(int i = position.Y; i< ShipSize.X; i++)
             {
                 IReadOnlyList<ContainerStack> stacks = Deck[i].GetContainerStacks();
-                if (stacks[i] != null)
+                if (stacks[i].GetContainers().Count > height)
                     succes = false;
             }
             if (succes)
@@ -156,7 +156,7 @@ namespace ContainerVervoer
             for (int i = position.Y; i > 0; i--)
             {
                 IReadOnlyList<ContainerStack> stacks = Deck[i].GetContainerStacks();
-                if (stacks[i] != null)
+                if (stacks[i].GetContainers().Count > height)
                     succes = false;
             }
             return succes;

@@ -5,17 +5,12 @@ namespace ContainerVervoer
 {
     class Program
     {
-        /* Bugs: Als schip oneven wijd is vult hij links niet
-         * 
-         */
         static void Main(string[] args)
         {
-            //uitgaande van gemiddelde gewicht container 17000
-            //gemiddelde max hoogte = 1 + 7,058823529411765
-            //max gewicht = gem max h * x * y
+          
             List<Container> containers = new List<Container>();
 
-            Ship ship = new Ship(new IntVector2(4, 4), 27105882);
+            Ship ship = new Ship(new IntVector2(5, 5), 27105882);
             containers.AddRange(CreateContainers());
             ship.AddContainers(containers);
             ship.Sort();
@@ -95,7 +90,7 @@ namespace ContainerVervoer
             List<Container> containers = new List<Container>();
             Random rand = new Random();
 
-            for(int i = 0; i< 100; i++)
+            for(int i = 0; i< 150; i++)
             {
                 int random = rand.Next(1, 15);
                 ContainerType container = (ContainerType)random;
@@ -103,53 +98,6 @@ namespace ContainerVervoer
                     container = ContainerType.Default;
                 containers.Add(new Container( container, rand.Next(4, 30) * 1000));
             }
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-            //containers.Add(new Container(ContainerType.Default, 30000));
-
             return containers;
         }
     }
