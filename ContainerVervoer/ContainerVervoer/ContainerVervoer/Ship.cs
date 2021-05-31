@@ -11,7 +11,7 @@ namespace ContainerVervoer
         private int MaximumWeight;
         private List<ContainerRow> Deck;
         private List<Container> TotalContainers;
-        private IntVector2 ShipSize;
+        private IntVector2 ShipSize; //X = width Y = length
 
         public Ship(IntVector2 intVector2, int maxWeight)
         {
