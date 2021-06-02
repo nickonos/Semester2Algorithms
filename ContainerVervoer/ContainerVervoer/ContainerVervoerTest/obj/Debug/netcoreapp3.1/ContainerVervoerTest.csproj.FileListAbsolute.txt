@@ -1,6 +1,3 @@
-C:\Users\nickv\source\repos\Semester2Algorithms\ContainerVervoer\ContainerVervoer\ContainerVervoerTest\bin\Debug\netcoreapp3.1\ContainerVervoer.deps.json
-C:\Users\nickv\source\repos\Semester2Algorithms\ContainerVervoer\ContainerVervoer\ContainerVervoerTest\bin\Debug\netcoreapp3.1\ContainerVervoer.runtimeconfig.json
-C:\Users\nickv\source\repos\Semester2Algorithms\ContainerVervoer\ContainerVervoer\ContainerVervoerTest\bin\Debug\netcoreapp3.1\ContainerVervoer.runtimeconfig.dev.json
 C:\Users\nickv\source\repos\Semester2Algorithms\ContainerVervoer\ContainerVervoer\ContainerVervoerTest\bin\Debug\netcoreapp3.1\ContainerVervoer.exe
 C:\Users\nickv\source\repos\Semester2Algorithms\ContainerVervoer\ContainerVervoer\ContainerVervoerTest\bin\Debug\netcoreapp3.1\NUnit3.TestAdapter.dll
 C:\Users\nickv\source\repos\Semester2Algorithms\ContainerVervoer\ContainerVervoer\ContainerVervoerTest\bin\Debug\netcoreapp3.1\NUnit3.TestAdapter.pdb

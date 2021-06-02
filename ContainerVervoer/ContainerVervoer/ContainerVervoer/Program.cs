@@ -10,7 +10,7 @@ namespace ContainerVervoer
           
             List<Container> containers = new List<Container>();
 
-            Ship ship = new Ship(new IntVector2(5, 5), 27105882);
+            Ship ship = new Ship(new IntVector2(4, 4), 27105882);
             containers.AddRange(CreateContainers());
             ship.AddContainers(containers);
             ship.Sort();
@@ -21,7 +21,7 @@ namespace ContainerVervoer
 
         static string GenerateOutputString(List<ContainerRow> containerRows)
         {
-            printValues(containerRows);
+            //PrintValues(containerRows);
 
             string output = "";
             output += $"https://i872272core.venus.fhict.nl/ContainerVisualizer/index.html?length={containerRows.Count}&width={containerRows[0].GetContainerStacks().Count}&stacks=";
@@ -72,7 +72,7 @@ namespace ContainerVervoer
             return output;
         }
 
-        static void printValues(List<ContainerRow> rows)
+        static void PrintValues(List<ContainerRow> rows)
         {
             foreach(ContainerRow row in rows)
             {
@@ -90,7 +90,7 @@ namespace ContainerVervoer
             List<Container> containers = new List<Container>();
             Random rand = new Random();
 
-            for(int i = 0; i< 150; i++)
+            for(int i = 0; i< 100; i++)
             {
                 int random = rand.Next(1, 15);
                 ContainerType container = (ContainerType)random;
